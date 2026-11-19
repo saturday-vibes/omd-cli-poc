@@ -930,7 +930,7 @@ __metadata:
     "@types/node": "npm:^24.0.0"
     ajv: "npm:^8.17.1"
     ajv-errors: "npm:^3.0.0"
-    commander: "npm:^14.0.3"
+    commander: "npm:^15.1.0"
     jest: "npm:^30.5.2"
     js-yaml: "npm:^4.1.0"
     omd-schema-component-v1.0.0: "npm:@test-org-th/omd-schema-component@1.0.0"
@@ -1596,10 +1596,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^14.0.3":
-  version: 14.0.3
-  resolution: "commander@npm:14.0.3"
-  checksum: 10c0/755652564bbf56ff2ff083313912b326450d3f8d8c85f4b71416539c9a05c3c67dbd206821ca72635bf6b160e2afdefcb458e86b317827d5cb333b69ce7f1a24
+"commander@npm:^15.1.0":
+  version: 15.1.0
+  resolution: "commander@npm:15.1.0"
+  checksum: 10c0/dd1013291d3e8779c726313616fa23174abc962182d0894ac73017c55d8b1ffe4a72401d91a1173974050536576896dc5279db07d37f929dbad469a16a12c54e
   languageName: node
   linkType: hard
 
