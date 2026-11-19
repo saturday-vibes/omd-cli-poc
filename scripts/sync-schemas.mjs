@@ -38,7 +38,8 @@ for (const kind of KINDS) {
 
 if (added.length && !process.argv.includes('--dry-run')) {
   const specs = added.map(a => `${a.alias}@npm:${SCOPE}/omd-schema-${a.kind}@${a.version}`);
-  execFileSync('yarn', ['add', ...specs], { stdio: 'inherit' });
+  // stdout carries the JSON summary, so yarn's output goes to stderr.
+  execFileSync('yarn', ['add', ...specs], { stdio: ['ignore', process.stderr, process.stderr] });
 }
 
 const describe = added.map(a => `${a.kind} ${a.version}`);
