@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`component schemas v1.4.4 matches the field snapshot 1`] = `
+[
+  "omd_service *: string",
+  "schema_version *: string",
+  "inventory_id *: string",
+  "omd_component *: object",
+  "omd_component.name *: string",
+  "omd_component.description *: string",
+  "omd_component.type *: string [microservice, platform, library, sdk, front-end, infra, client-app, dashboard, serverless, infra-library, database, static-site, microservice-ai-agent, serverless-ai-agent]",
+  "omd_component.omd_compliance *: string",
+  "omd_component.omd_cell *: string",
+  "omd_component.subdivision_strategy: string [global, market, tenant, tenant-market]",
+  "omd_component.supported_markets: array",
+  "omd_component.deployment_strategy: string [single, primary, all, dual]",
+  "omd_component.database_type: string [aurora-pg, dynamodb, elasticache, mongodb]",
+  "omd_component.replication_strategy: string [global, market, none]",
+  "omd_component.sdm_owner_email *: string",
+  "omd_component.jira_team *: string",
+  "omd_component.omd_tier *: string [undefined, not-applicable, tier-1, tier-2, tier-3, tier-4]",
+  "omd_component.dependencies: array",
+  "omd_component.dependencies[].omd_service *: string",
+  "omd_component.dependencies[].omd_component *: string",
+  "omd_component.paths: object",
+  "omd_component.paths.src: array",
+  "omd_component.paths.infra: array",
+  "omd_component.paths.docs: array",
+  "jira_project *: object",
+  "jira_project.name *: string",
+  "jira_project.jira_board *: string",
+]
+`;
+
+exports[`service schemas v1.2.1 matches the field snapshot 1`] = `
+[
+  "schema_version *: string",
+  "inventory_id *: string",
+  "omd_business_service *: object",
+  "omd_business_service.name *: string",
+  "omd_service *: object",
+  "omd_service.name *: string",
+  "omd_service.description *: string",
+  "omd_service.origin: string",
+]
+`;

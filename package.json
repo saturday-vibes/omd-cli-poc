@@ -1,0 +1,47 @@
+{
+  "name": "@test-org-th/omd-cli-poc",
+  "version": "0.1.0",
+  "description": "POC of the OMD CLI loading per-version schema packages",
+  "license": "MIT",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saturday-vibes/omd-cli-poc.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "bin": {
+    "omd": "dist/bin/omd.js"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "sync-schemas": "node scripts/sync-schemas.mjs"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-errors": "^3.0.0",
+    "commander": "^14.0.3",
+    "js-yaml": "^4.1.0",
+    "omd-schema-component-v1.4.4": "npm:@test-org-th/omd-schema-component@1.4.4",
+    "omd-schema-service-v1.2.1": "npm:@test-org-th/omd-schema-service@1.2.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^24.0.0",
+    "jest": "^30.5.2",
+    "ts-jest": "^29.4.15",
+    "typescript": "~5.9.3"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "yarn@4.5.3"
+}

@@ -1,0 +1,1 @@
+export { versionsCommand } from './root';

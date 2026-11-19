@@ -1,0 +1,1 @@
+export { schemaCommand } from './root';

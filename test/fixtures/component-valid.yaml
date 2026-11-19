@@ -1,0 +1,17 @@
+schema_version: v1.4.4
+inventory_id: 980162270ee0cf69c2e3a0a0a87dd93d-e8e885e0931c2c609d3059f840c02b70
+omd_service: checkout
+omd_component:
+  name: checkout-api
+  description: Checkout API
+  type: microservice
+  omd_compliance: none
+  omd_cell: checkout
+  subdivision_strategy: global
+  deployment_strategy: single
+  sdm_owner_email: owner@example.com
+  jira_team: Checkout
+  omd_tier: tier-2
+jira_project:
+  name: CHK
+  jira_board: Checkout board

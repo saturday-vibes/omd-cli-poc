@@ -1,0 +1,65 @@
+name: schema-sync
+
+# Opens (or updates) one PR that adds every published schema version this CLI
+# doesn't ship yet. Triggered by omd-schema-sandbox's release, hourly, or by hand.
+
+on:
+  repository_dispatch:
+    types: [schema-published]
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: schema-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Get node version
+        id: nvm
+        run: echo "NODE_VERSION=$(cat .nvmrc)" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+      - run: corepack enable
+      - run: yarn install --immutable
+      - name: Add aliases for new schema versions
+        id: sync
+        env:
+          YARN_ENABLE_IMMUTABLE_INSTALLS: 'false'
+        run: |
+          summary=$(node scripts/sync-schemas.mjs | tail -n 1)
+          echo "$summary" | jq .
+          echo "title=$(jq -r .title <<<"$summary")" >> "$GITHUB_OUTPUT"
+          echo "count=$(jq '.added | length' <<<"$summary")" >> "$GITHUB_OUTPUT"
+          jq -r '.added[] | "- `\(.alias)`: `@test-org-th/omd-schema-\(.kind)@\(.version)`"' <<<"$summary" > added.md
+      # PRs opened with GITHUB_TOKEN don't trigger pull_request workflows, so the
+      # checks also run here. New versions get their field snapshots written.
+      - name: Build and test with the new versions
+        if: steps.sync.outputs.count != '0'
+        run: |
+          yarn build
+          yarn test --ci=false
+      - name: Open or update the PR
+        if: steps.sync.outputs.count != '0'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.CLI_BOT_TOKEN || github.token }}
+          branch: bot/schema-sync
+          delete-branch: true
+          commit-message: ${{ steps.sync.outputs.title }}
+          title: ${{ steps.sync.outputs.title }}
+          body-path: added.md
+          add-paths: |
+            package.json
+            yarn.lock
+            src/**/__snapshots__/**
+          labels: schema-sync

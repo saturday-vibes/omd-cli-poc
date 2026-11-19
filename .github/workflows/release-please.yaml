@@ -1,0 +1,49 @@
+name: release-please
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - id: release
+        uses: googleapis/release-please-action@v5
+        with:
+          token: ${{ secrets.CLI_BOT_TOKEN || github.token }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  publish:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.release-please.outputs.tag_name }}
+      - name: Get node version
+        id: nvm
+        run: echo "NODE_VERSION=$(cat .nvmrc)" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+          registry-url: https://registry.npmjs.org
+      - run: corepack enable
+      - run: yarn install --immutable
+      - run: yarn build
+      - run: yarn test --ci
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish

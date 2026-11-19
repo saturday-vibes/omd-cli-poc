@@ -1,0 +1,4 @@
+schema_version: v0.0.1
+omd_service: checkout
+omd_component:
+  name: checkout-api

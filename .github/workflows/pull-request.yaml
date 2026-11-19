@@ -1,0 +1,48 @@
+name: pull-request
+
+on:
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  pr-title-check:
+    name: PR Title Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Slashgear/action-check-pr-title@76166c63ec0b25cdbe693e5e972e83ca186313fb # v6.0.0
+        with:
+          regexp: '^(feat|fix|chore|docs|ci|refactor|test|perf|build|style|revert)(\(.*\))?(!)?:'
+          helpMessage: 'PR title must follow conventional commits: type(scope): description.'
+
+  build-and-test:
+    if: github.event.action != 'edited'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Get node version
+        id: nvm
+        run: echo "NODE_VERSION=$(cat .nvmrc)" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+      - run: corepack enable
+      - run: yarn install --immutable
+      - run: yarn build
+      # --ci: a schema version without a snapshot fails instead of writing one.
+      - run: yarn test --ci
+      - name: Smoke test the packed CLI
+        run: |
+          yarn pack --out cli.tgz
+          dir=$(mktemp -d)
+          (cd "$dir" && npm init -y >/dev/null && npm install --no-audit --no-fund "$GITHUB_WORKSPACE/cli.tgz")
+          omd="$dir/node_modules/.bin/omd"
+          test "$("$omd" --version)" = "$(jq -r .version package.json)"
+          "$omd" schema versions --format text
+          "$omd" validate test/fixtures/component-valid.yaml --format text
