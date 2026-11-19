@@ -28,7 +28,7 @@
     "ajv": "^8.17.1",
     "ajv-errors": "^3.0.0",
     "commander": "^14.0.3",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^5.5.0",
     "omd-schema-component-v1.0.0": "npm:@test-org-th/omd-schema-component@1.0.0",
     "omd-schema-component-v1.1.0": "npm:@test-org-th/omd-schema-component@1.1.0",
     "omd-schema-component-v1.1.1": "npm:@test-org-th/omd-schema-component@1.1.1",
