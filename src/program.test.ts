@@ -17,15 +17,15 @@ describe('omd', () => {
     expect(result.component.versions.length).toBeGreaterThan(0);
   });
 
-  it('shows the fields of the latest bundled component schema by default', async () => {
+  it('shows the fields of the latest component schema by default', async () => {
     const result = JSON.parse((await run('schema')).stdout);
-    expect(result).toMatchObject({ kind: 'component', source: 'bundled' });
+    expect(result).toMatchObject({ kind: 'component' });
     expect(result.fields.map((f: { path: string }) => f.path)).toContain('omd_component.name');
   });
 
   it('validates a valid component file', async () => {
     const outcome = await run('validate', path.join(fixtures, 'component-valid.yaml'), '--format', 'text');
-    expect(outcome.stdout).toMatch(/valid against component schema v1\.4\.4 \(bundled\)/);
+    expect(outcome.stdout).toMatch(/valid against component schema v1\.4\.4$/m);
     expect(outcome.exitCode).toBe(0);
   });
 
@@ -37,8 +37,8 @@ describe('omd', () => {
     expect(result.errors.length).toBeGreaterThan(0);
   });
 
-  it('fails with exit code 2 for a version it does not ship when downloads are off', async () => {
-    const outcome = await run('validate', path.join(fixtures, 'component-unknown-version.yaml'), '--no-download');
+  it('fails with exit code 2 for a version it does not ship', async () => {
+    const outcome = await run('validate', path.join(fixtures, 'component-unknown-version.yaml'));
     expect(outcome.exitCode).toBe(2);
     expect(JSON.parse(outcome.stdout).error).toMatch(/doesn't ship component schema v0\.0\.1/);
   });

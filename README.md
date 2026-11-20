@@ -22,11 +22,9 @@ Each shipped version is one alias in `dependencies`:
 `package.json` and loads a version with `require.resolve('<alias>/package.json')`,
 checking the package name and version match.
 
-A `now.yaml` that declares a version the CLI doesn't ship is downloaded at
-runtime (`src/shared/schemas/download.ts`): `npm install <package>@<version>
---prefix ~/.omd-cli/schemas/... --ignore-scripts`, run from the current folder
-so its `.npmrc` applies, then reused from the cache. `--no-download` turns this
-off.
+A `now.yaml` that declares a version the CLI doesn't ship fails with exit code
+2; the fix is a newer CLI. For downloading versions at runtime instead, see
+[omd-cli-dynamic-poc](https://github.com/saturday-vibes/omd-cli-dynamic-poc).
 
 ## End to end
 
@@ -49,7 +47,6 @@ merge → release.yaml  ──────────────► omd-schema
 - the alias resolves to the right package and version
 - the schema compiles (AJV, `strict: false`, ajv-errors)
 - the field walk used by `schema show` finds fields
-- the sample declares this version
 - a snapshot of the fields; `jest --ci` fails on a version without one, so
   schema-sync writes it and the PR shows it
 
