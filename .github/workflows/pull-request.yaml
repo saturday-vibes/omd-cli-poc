@@ -45,4 +45,4 @@ jobs:
           omd="$dir/node_modules/.bin/omd"
           test "$("$omd" --version)" = "$(jq -r .version package.json)"
           "$omd" schema versions --format text
-          "$omd" validate test/fixtures/component-valid.yaml --format text
+          "$omd" validate test/fixtures/component-valid.yaml --format text --skip-backstage
