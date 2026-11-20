@@ -954,8 +954,6 @@ __metadata:
     omd-schema-service-v1.2.0: "npm:@test-org-th/omd-schema-service@1.2.0"
     omd-schema-service-v1.2.1: "npm:@test-org-th/omd-schema-service@1.2.1"
     omd-schema-service-v1.3.0: "npm:@test-org-th/omd-schema-service@1.3.0"
-    omd-schema-service-v1.4.0: "npm:@test-org-th/omd-schema-service@1.4.0"
-    omd-schema-service-v1.5.0: "npm:@test-org-th/omd-schema-service@1.5.0"
     ts-jest: "npm:^29.4.15"
     typescript: "npm:~5.9.3"
   bin:
@@ -2956,20 +2954,6 @@ __metadata:
   version: 1.3.0
   resolution: "@test-org-th/omd-schema-service@npm:1.3.0"
   checksum: 10c0/e24f19ecd2b7017a84649fa9adf0f4cabc8cabcb0871c19462237db8bedd579d70a970209c9b3be3b3df18155b5a7ebcb19a7865ab4b7372f72b31734afc8ac4
-  languageName: node
-  linkType: hard
-
-"omd-schema-service-v1.4.0@npm:@test-org-th/omd-schema-service@1.4.0":
-  version: 1.4.0
-  resolution: "@test-org-th/omd-schema-service@npm:1.4.0"
-  checksum: 10c0/b379d15cc539a7eeb8d219801fd9c23075839c0b088ae05b8c1b7adb6ade82c4492f77e3a75152e971321011901f74037dbd98e767af15439e1be42761c6a7c5
-  languageName: node
-  linkType: hard
-
-"omd-schema-service-v1.5.0@npm:@test-org-th/omd-schema-service@1.5.0":
-  version: 1.5.0
-  resolution: "@test-org-th/omd-schema-service@npm:1.5.0"
-  checksum: 10c0/16d525ef557a0ebcb5d91280aa27a988a93c45301d303e37db73c3a701eee4dcd38f7a9977060620d5b78a8b23826672b6f98b17995b5ba10bd492c8fb775b7f
   languageName: node
   linkType: hard
 
