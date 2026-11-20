@@ -1,0 +1,23 @@
+omd_service: service-catalog-backstage
+omd_component:
+  name: backstage-elasticache
+  description: ElastiCache infrastructure for the backstage app.
+  type: infra
+  omd_compliance: none
+  omd_cell: backstage
+  subdivision_strategy: global
+  deployment_strategy: single
+  sdm_owner_email: owner@example.com
+  jira_team: CEA O11Y SC Service catalog
+  omd_tier: tier-2
+  paths:
+    src:
+      - infra/terraform/elasticache
+    infra:
+      - infra/terraform/elasticache
+jira_project:
+  name: CEA
+  jira_board: https://wbdstreaming.atlassian.net/jira/software/c/projects/CEA/boards/986
+
+schema_version: v1.4.0
+inventory_id: 980162270ee0cf69c2e3a0a0a87dd93d-e8e885e0931c2c609d3059f840c02b70
