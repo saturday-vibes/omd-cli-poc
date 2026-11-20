@@ -1,6 +1,6 @@
 {
   "name": "@test-org-th/omd-cli-poc",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "POC of the OMD CLI loading per-version schema packages",
   "license": "MIT",
   "type": "commonjs",

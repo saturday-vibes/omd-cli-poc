@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/saturday-vibes/omd-cli-poc/compare/omd-cli-poc-v0.2.0...omd-cli-poc-v0.3.0) (2026-11-20)
+
+
+### Features
+
+* **schema:** add component 1.5.0 ([#10](https://github.com/saturday-vibes/omd-cli-poc/issues/10)) ([76fd52e](https://github.com/saturday-vibes/omd-cli-poc/commit/76fd52e415cfc208a51debe550aa29598a318e63))
+
 ## [0.2.0](https://github.com/saturday-vibes/omd-cli-poc/compare/omd-cli-poc-v0.1.0...omd-cli-poc-v0.2.0) (2026-11-20)
 
 
