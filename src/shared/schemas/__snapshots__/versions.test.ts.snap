@@ -515,3 +515,51 @@ exports[`service schemas v1.3.0 matches the field snapshot 1`] = `
   "omd_service.slack_channel: string",
 ]
 `;
+
+exports[`service schemas v1.4.0 matches the field snapshot 1`] = `
+[
+  "schema_version *: string",
+  "inventory_id *: string",
+  "omd_business_service *: object",
+  "omd_business_service.name *: string",
+  "omd_service *: object",
+  "omd_service.name *: string",
+  "omd_service.description *: string",
+  "omd_service.origin: string",
+  "omd_service.slack_channel: string",
+  "omd_service.runbook_url: string",
+]
+`;
+
+exports[`service schemas v1.5.0 matches the field snapshot 1`] = `
+[
+  "schema_version *: string",
+  "inventory_id *: string",
+  "omd_business_service *: object",
+  "omd_business_service.name *: string",
+  "omd_service *: object",
+  "omd_service.name *: string",
+  "omd_service.description *: string",
+  "omd_service.origin: string",
+  "omd_service.slack_channel: string",
+  "omd_service.runbook_url: string",
+  "omd_service.oncall_rotation: string",
+]
+`;
+
+exports[`service schemas v1.6.0 matches the field snapshot 1`] = `
+[
+  "schema_version *: string",
+  "inventory_id *: string",
+  "omd_business_service *: object",
+  "omd_business_service.name *: string",
+  "omd_service *: object",
+  "omd_service.name *: string",
+  "omd_service.description *: string",
+  "omd_service.origin: string",
+  "omd_service.slack_channel: string",
+  "omd_service.runbook_url: string",
+  "omd_service.oncall_rotation: string",
+  "omd_service.cost_center: string",
+]
+`;
